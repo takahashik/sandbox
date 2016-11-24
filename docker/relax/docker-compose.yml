@@ -1,0 +1,18 @@
+version: '2'
+services:
+  relax:
+    restart: always
+    image: relax/relax
+    links:
+      - mongo:mongo
+    environment:
+      relax_demo: 'true'
+    ports:
+      - "8080:8080"
+    volumes:
+      - /srv/relax/data/media:/app/public/media
+  mongo:
+    restart: always
+    image: mongo
+    volumes:
+      - /srv/relax/data/mongo:/data/db
